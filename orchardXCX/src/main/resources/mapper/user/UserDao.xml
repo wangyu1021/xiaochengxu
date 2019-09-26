@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xcx.dao.UserDao">
+	<insert id="insertUser">
+		insert into user (openid,
+		nickName, avatarUrl) VALUES
+		(#{openid},#{nickName},#{avatarUrl});
+	</insert>
+	<select id="selectUserByOpenId" resultType="xcx.pojo.User">
+		select * from user
+		where openid=#{openid}
+	</select>
+	<update id="updateUser">
+		UPDATE `orchardxcx`.`user` SET
+		`nickName`=#{nickName}, `avatarUrl`=#{avatarUrl} where
+		openid=#{openid};
+	</update>
+	<insert id="addAddress">
+		INSERT INTO `orchardxcx`.`user_address` ( `openid`,
+		`name`, `phone`,
+		`address`) VALUES
+		(#{openid},#{name},#{phone},#{address});
+	</insert>
+	<delete id="deleteAddress">
+		delete from user_address where id=#{id}
+	</delete>
+	<select id="findAddress" resultType="xcx.pojo.UserAddress">
+		select * from user_address
+		where openid = #{openid}
+	</select>
+	<select id="selectDefaultAddress"
+		resultType="xcx.pojo.UserAddress">
+		select * from user_address where status = 1
+	</select>
+	<update id="updateDefaultAddress">
+		UPDATE user_address SET status= 1 WHERE
+		id=#{id}
+	</update>
+	<update id="updateAddress">
+		UPDATE user_address SET status= 0
+	</update>
+	<update id="updateBalance">
+		UPDATE user SET balance=#{b} where openid=#{openid}
+	</update>
+</mapper>

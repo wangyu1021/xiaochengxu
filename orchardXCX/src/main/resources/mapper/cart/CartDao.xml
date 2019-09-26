@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xcx.dao.CartDao">
+	<select id="selectProduct" resultType="xcx.pojo.Cart">
+		select id,product_id as
+		productId,num,openid from cart where product_id=#{productId} and
+		openid=#{openid}
+	</select>
+	<update id="updateNum">
+		UPDATE cart SET `num`=#{num} WHERE
+		product_id=#{productId} and
+		openid=#{openid};
+	</update>
+	<insert id="insertProduct">
+		INSERT INTO cart (`product_id`,
+		`num`, `openid`)
+		VALUES (#{productId},#{num},#{openid});
+	</insert>
+	<select id="selectCartByOpenid" resultType="xcx.pojo.Cart">
+		select id,product_id as
+		productId,num,openid from cart where openid=#{openid}
+	</select>
+	<delete id="deleteCart" >
+		delete from cart where id=#{id}
+	</delete>
+</mapper>

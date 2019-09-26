@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xcx.dao.ProductDao">
+	<select id="selectProductByName"
+		resultType="xcx.pojo.Product">
+		select * from product where name like
+		concat('%',#{name},'%');
+	</select>
+	<select id="selectProduct" resultType="xcx.pojo.Product">
+		select * from product;
+	</select>
+	<select id="selectProductById" resultType="xcx.pojo.Product">
+		select * from product where id=#{productId};
+	</select>
+	<select id="selectProductByClassifyId" resultType="xcx.pojo.Product">
+		select id,classify_id as classifyId,number,name,price,num,origin,specification,information,image from product where classify_id =#{classifyId}
+	</select>
+</mapper>
