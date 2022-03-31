@@ -9,7 +9,7 @@
 	<name>SSM</name>
 	<properties>
 		<!-- Spring版本号 -->
-		<spring.version>4.3.8.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<jackson.version>2.5.4</jackson.version>
 	</properties>
 	<dependencies>
